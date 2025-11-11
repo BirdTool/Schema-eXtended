@@ -12,7 +12,7 @@ class BooleanSchema(
     private var trueErrorMessage: String? = null
     private var falseErrorMessage: String? = null
 
-    override fun safeParse(input: Any?): SafeParseResult<Boolean> {
+    override fun safeParse(input: Any?): SafeParseResult<Boolean?> {
         val errors = mutableListOf<String>()
         var parsed: Boolean? = null
 

@@ -4,8 +4,8 @@ import studio.styx.sx.types.Schema
 
 @Suppress("UNCHECKED_CAST")
 open class StringSchema(
-    internal open val errorMessage: String? = null,
-    internal open val coerce: Boolean = false
+    private val errorMessage: String? = null,
+    private val coerce: Boolean = false
 ) : Schema<String> {
     private var minLength: Int? = null
     private var maxLength: Int? = null

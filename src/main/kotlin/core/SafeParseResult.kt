@@ -6,7 +6,7 @@ data class SafeParseResult<out T>(
     val errors: List<String> = emptyList()
 ) {
     companion object {
-        fun <T> success(value: T): SafeParseResult<Boolean> =
+        fun <T> success(value: T): SafeParseResult<T> =
             SafeParseResult(success = true, value = value, errors = emptyList())
 
         fun <T> failure(vararg errors: String): SafeParseResult<T> =

@@ -1,9 +1,10 @@
 plugins {
     kotlin("jvm") version "2.2.20"
+    id("maven-publish")
 }
 
-group = "studio.styx.sx"
-version = "1.0-SNAPSHOT"
+group = "studio.styx.schemaEXtended"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
@@ -16,6 +17,15 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(21)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
 }

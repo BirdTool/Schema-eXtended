@@ -2,13 +2,11 @@ package studio.styx.schemaEXtended.core;
 
 import studio.styx.schemaEXtended.core.exceptions.SchemaIllegalArgumentException;
 
-public class Schema<T> {
+public abstract class Schema<T> {
     private boolean coerce = false;
     private boolean opcional = false;
 
-    public ParseResult<T> parse(Object obj) {
-        return ParseResult.success((T) obj);
-    }
+    public abstract ParseResult<T> parse(Object obj);
 
     public T parseOrThrow(Object value) {
         ParseResult<T> result = parse(value);

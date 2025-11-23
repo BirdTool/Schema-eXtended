@@ -1,5 +1,6 @@
 package studio.styx.schemaEXtended.core.schemas;
 
+import studio.styx.schemaEXtended.core.ObjectSchemaResult;
 import studio.styx.schemaEXtended.core.ParseResult;
 import studio.styx.schemaEXtended.core.Schema;
 
@@ -267,7 +268,7 @@ public class ArraySchema<T> extends Schema<List<T>> {
         return new ArraySchema<>(new NumberSchema());
     }
 
-    public static ArraySchema<Map<String, Object>> objects() {
+    public static ArraySchema<ObjectSchemaResult> objects() {
         return new ArraySchema<>(new ObjectSchema());
     }
 }

@@ -1,5 +1,6 @@
 package studio.styx.schemaEXtended.core.schemas;
 
+import studio.styx.schemaEXtended.core.ObjectSchemaResult;
 import studio.styx.schemaEXtended.core.ParseResult;
 import studio.styx.schemaEXtended.core.Schema;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObjectSchema extends Schema<Map<String, Object>> {
+public class ObjectSchema extends Schema<ObjectSchemaResult> {
     private Map<String, Schema<?>> properties = new HashMap<>();
     private Map<String, Schema<?>> partialProperties = new HashMap<>();
     private boolean strict = false;
@@ -82,11 +83,11 @@ public class ObjectSchema extends Schema<Map<String, Object>> {
     }
 
     @Override
-    public ParseResult<Map<String, Object>> parse(Object value) {
+    public ParseResult<ObjectSchemaResult> parse(Object value) {
         // Tratamento de null
         if (value == null) {
             if (this.isOptional()) {
-                return ParseResult.success(new HashMap<>());
+                return ParseResult.success(new ObjectSchemaResult(new HashMap<>()));
             } else {
                 return ParseResult.failure(List.of(parseError));
             }
@@ -148,7 +149,7 @@ public class ObjectSchema extends Schema<Map<String, Object>> {
 
         // Se não há erros, retorna sucesso
         if (fieldErrors.isEmpty()) {
-            return ParseResult.success(parsedValues);
+            return ParseResult.success(new ObjectSchemaResult(parsedValues));
         } else {
             return ParseResult.failure(fieldErrors);
         }

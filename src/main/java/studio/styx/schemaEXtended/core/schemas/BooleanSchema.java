@@ -9,6 +9,9 @@ public class BooleanSchema extends Schema<Boolean> {
     private String parseError = "The provided value is not a boolean";
     private Boolean defaultValue;
 
+    public BooleanSchema() {}
+    public BooleanSchema(String errorMsg) { this.parseError = errorMsg; }
+
     public BooleanSchema defaultValue(Boolean defaultValue) {
         this.defaultValue = defaultValue;
         return this;

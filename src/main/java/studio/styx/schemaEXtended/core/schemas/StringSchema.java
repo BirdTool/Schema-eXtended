@@ -26,6 +26,9 @@ public class StringSchema extends Schema<String> {
     private boolean toLowerCase = false;
     private boolean toUpperCase = false;
 
+    public StringSchema() {}
+    public StringSchema(String errorMsg) { this.parseError = errorMsg; }
+
     // Métodos de configuração (fluent interface)
     public StringSchema parseError(String parseError) {
         this.parseError = parseError;

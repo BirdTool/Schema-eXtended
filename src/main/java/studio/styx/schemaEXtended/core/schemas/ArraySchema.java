@@ -3,10 +3,10 @@ package studio.styx.schemaEXtended.core.schemas;
 import studio.styx.schemaEXtended.core.ObjectSchemaResult;
 import studio.styx.schemaEXtended.core.ParseResult;
 import studio.styx.schemaEXtended.core.Schema;
+import studio.styx.schemaEXtended.core.schemas.numbersSchemas.NumberSchema;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
 public class ArraySchema<T> extends Schema<List<T>> {
@@ -25,6 +25,14 @@ public class ArraySchema<T> extends Schema<List<T>> {
     public ArraySchema(Schema<T> elementSchema) {
         this.elementSchema = elementSchema;
     }
+    public ArraySchema(Schema<T> elementSchema, String errorMsg) {
+        this.elementSchema = elementSchema;
+        this.parseError = errorMsg;
+    }
+    public ArraySchema(String errorMsg, Schema<T> elementSchema) {
+        this.elementSchema = elementSchema;
+        this.parseError = errorMsg;
+    }
 
     // Métodos de configuração
     public ArraySchema<T> minLength(int minLength) {
@@ -39,11 +47,31 @@ public class ArraySchema<T> extends Schema<List<T>> {
         return this;
     }
 
+    public ArraySchema<T> minLength(int minLength, String msg) {
+        this.minLength = minLength;
+        this.minLengthError = msg;
+        return this;
+    }
+
+    public ArraySchema<T> maxLength(int maxLength, String msg) {
+        this.maxLength = maxLength;
+        this.maxLengthError = msg;
+        return this;
+    }
+
     public ArraySchema<T> length(int exactLength) {
         this.minLength = exactLength;
         this.maxLength = exactLength;
         this.minLengthError = "Array must have exactly " + exactLength + " elements";
         this.maxLengthError = "Array must have exactly " + exactLength + " elements";
+        return this;
+    }
+
+    public ArraySchema<T> length(int exactLength, String errorMessage) {
+        this.minLength = exactLength;
+        this.maxLength = exactLength;
+        this.minLengthError = errorMessage;
+        this.maxLengthError = errorMessage;
         return this;
     }
 

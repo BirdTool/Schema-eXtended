@@ -178,7 +178,7 @@ Currently, **Schema eXtended** is not hosted on a public repository (like Maven 
 Clone this repository and run the gradle task to publish it to your local Maven cache.
 
 ```bash
-git clone [https://github.com/BirdTool/Schema-eXtended.git](https://github.com/YourUsername/SchemaEXtended.git)
+git clone https://github.com/BirdTool/Schema-eXtended.git
 cd SchemaEXtended
 ./gradlew publishToMavenLocal
 
